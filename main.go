@@ -51,7 +51,8 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 
 func GetHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	param := mux.Vars(r)["key"]
+	vars := mux.Vars(r)
+	param := vars["key"]
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte(param))
 }
