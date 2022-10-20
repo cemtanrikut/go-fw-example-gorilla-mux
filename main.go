@@ -3,6 +3,7 @@ package main
 import (
 	"container/list"
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -21,7 +22,10 @@ func main() {
 	// "/products/{key}/"
 	subrouter.HandleFunc("/{key}/", GetHandler).Methods(http.MethodGet)
 
-	http.Handle("/", router)
+	err := http.ListenAndServe(":8080", router)
+	if err != nil {
+		log.Fatal("There's an error with the server,")
+	}
 }
 
 func MainHandler(w http.ResponseWriter, r *http.Request) {
