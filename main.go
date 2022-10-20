@@ -22,9 +22,10 @@ func main() {
 	// "/products/{key}/"
 	subrouter.HandleFunc("/{key}/", GetHandler).Methods(http.MethodGet)
 
+	log.Println("Listening ...")
 	err := http.ListenAndServe(":8080", router)
 	if err != nil {
-		log.Fatal("There's an error with the server,")
+		log.Fatalln("There's an error with the server,")
 	}
 }
 
